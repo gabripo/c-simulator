@@ -7,13 +7,13 @@ int main(int argc, char const *argv[])
     algSys toSolveEqs;
 
     sys.nEqs = 1;
-    sys.odeEqs = (char*) "DxDt - a*x";
+    sys.odeEqs = "DxDt - a*x";
     sys.odeICs = (int*) 0;
-    sys.parametersSub = (char*) "a = 1";
+    sys.parametersSub = "a = 1";
     sys.independentVariable = 't';
     sys.derivativeIdentifier = 'D';
 
-    fwdEuler.derivativeSub = (char*) "DxDt = ( x(k) - x(k-1) ) / h";
+    fwdEuler.derivativeSub = "DxDt = ( x(k) - x(k-1) ) / h";
     fwdEuler.timeStepName = 'h';
     fwdEuler.timeStep = 0.1;
     fwdEuler.abscissaIdentifier = 'k';

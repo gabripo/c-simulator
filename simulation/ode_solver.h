@@ -28,3 +28,4 @@ typedef struct
 } algSys;
 
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys );
+void getParameterSubValues( char *str, char *name, double *value );

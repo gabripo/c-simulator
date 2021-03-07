@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
     algSys toSolveEqs;
 
     sys.nEqs = 1;
-    sys.odeEqs = "DxDt - a*x";
+    sys.odeEqs = "DxDt - a * x";
     sys.odeICs = (int*) 0;
     sys.parametersSub = "a = 1";
     sys.independentVariable = 't';

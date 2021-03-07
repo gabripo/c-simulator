@@ -6,12 +6,17 @@ typedef struct
     int nEqs;
     char *odeEqs;
     int *odeICs;
+    char *parametersSub;
+    char independentVariable;
 } odeSys;
 
 typedef struct
 {
     char *derivativeSub;
+    char timeStepName;
     double timeStep;
+    char abscissaIdentifier;
+    char independentVariable;
 } finiteDifferenceMethod;
 
 typedef struct

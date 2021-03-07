@@ -8,6 +8,7 @@ typedef struct
     int *odeICs;
     char *parametersSub;
     char independentVariable;
+    char derivativeIdentifier;
 } odeSys;
 
 typedef struct
@@ -17,6 +18,7 @@ typedef struct
     double timeStep;
     char abscissaIdentifier;
     char independentVariable;
+    char derivativeIdentifier;
 } finiteDifferenceMethod;
 
 typedef struct

@@ -6,7 +6,8 @@ void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, a
 
     /* Substitution of parameters into ODEs */
     double value;
-    char name[10]; // Impossible to pre-allocate
+    char *name = NULL;
+    name = calloc(1, sizeof name);
 
     getParameterSubValues(symbolicSys.parametersSub[0], name, &value);
     printf("%s = %d\n", name, value);

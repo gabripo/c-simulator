@@ -21,3 +21,11 @@ void getParameterSubValues( char *str, char *name, double *value )
 {
     sscanf( str, "%s = %d", name, value);
 };
+
+void setParameterSubValues( char **str, char *sub )
+{
+    int len = strlen(sub);
+
+    str[0] = calloc( len + 1, sizeof **str);
+    strncpy(str[0], sub, len);
+}

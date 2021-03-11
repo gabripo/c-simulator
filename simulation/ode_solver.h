@@ -8,6 +8,7 @@ typedef struct
     int nEqs;
     char *odeEqs;
     int *odeICs;
+    int nSubs;
     char **parametersSub;
     char independentVariable;
     char derivativeIdentifier;
@@ -31,3 +32,4 @@ typedef struct
 
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys );
 void getParameterSubValues( char *str, char *name, double *value );
+void setParameterSubValues( char **str, char *sub );

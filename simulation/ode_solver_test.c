@@ -10,11 +10,13 @@ int main(int argc, char const *argv[])
     sys.odeEqs = "DxDt - a * x";
     sys.odeICs = (int*) 0;
 
+    sys.nSubs = 10;
     sys.parametersSub = NULL;
-    sys.parametersSub = calloc(100, sizeof *sys.parametersSub);
-    sys.parametersSub[0] = calloc(strlen("a = 1") + 1, sizeof *sys.parametersSub);
-    strncpy(sys.parametersSub[0], "a = 1", strlen("a = 1"));
-    
+    sys.parametersSub = calloc(sys.nSubs, sizeof *sys.parametersSub);
+    //sys.parametersSub[0] = calloc(strlen("a = 1") + 1, sizeof **sys.parametersSub);
+    //strncpy(sys.parametersSub[0], "a = 1", strlen("a = 1"));
+    setParameterSubValues(sys.parametersSub, "a = 1");
+
     sys.independentVariable = 't';
     sys.derivativeIdentifier = 'D';
 

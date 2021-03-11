@@ -27,13 +27,15 @@ void getParameterSubValues( char *str, char *name, double *value )
     sscanf( str, "%s = %d", name, value);
 };
 
-void setParameterSubValues( char **str, char *sub )
+void setParameterSubValues( odeSys sys, char *sub )
 {
     int len = strlen(sub);
     int idx = 0;
-    while (str[idx]) { idx++; };
+    
+    while (sys.parametersSub[idx]) { idx++; };
+    sys.nSubs = idx;
 
-    str[idx] = calloc( len + 1, sizeof **str);
-    strncpy(str[idx], sub, len);
-    str[idx][len] = 0;
+    sys.parametersSub[idx] = calloc( len + 1, sizeof **sys.parametersSub);
+    strncpy(sys.parametersSub[idx], sub, len);
+    sys.parametersSub[idx][len] = 0;
 }

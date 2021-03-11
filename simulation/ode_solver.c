@@ -9,8 +9,13 @@ void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, a
     char *name = NULL;
     name = calloc(1, sizeof name);
 
-    getParameterSubValues(symbolicSys.parametersSub[0], name, &value);
-    printf("%s = %d\n", name, value);
+    int idxParametersSub = 0;
+    while (symbolicSys.parametersSub[idxParametersSub])
+    {
+        getParameterSubValues(symbolicSys.parametersSub[idxParametersSub], name, &value);
+        printf("%s = %d\n", name, value);
+        idxParametersSub++;
+    }
 
     // TODO: Composing finite difference equation
     // TODO: Substituting finite difference equation
@@ -25,7 +30,10 @@ void getParameterSubValues( char *str, char *name, double *value )
 void setParameterSubValues( char **str, char *sub )
 {
     int len = strlen(sub);
+    int idx = 0;
+    while (str[idx]) { idx++; };
 
-    str[0] = calloc( len + 1, sizeof **str);
-    strncpy(str[0], sub, len);
+    str[idx] = calloc( len + 1, sizeof **str);
+    strncpy(str[idx], sub, len);
+    str[idx][len] = 0;
 }

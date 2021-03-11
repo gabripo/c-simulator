@@ -16,6 +16,8 @@ int main(int argc, char const *argv[])
     //sys.parametersSub[0] = calloc(strlen("a = 1") + 1, sizeof **sys.parametersSub);
     //strncpy(sys.parametersSub[0], "a = 1", strlen("a = 1"));
     setParameterSubValues(sys.parametersSub, "a = 1");
+    setParameterSubValues(sys.parametersSub, "b = 2");
+    setParameterSubValues(sys.parametersSub, "c = 3");
 
     sys.independentVariable = 't';
     sys.derivativeIdentifier = 'D';

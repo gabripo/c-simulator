@@ -1,12 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 typedef struct 
 {
     int nEqs;
     char *odeEqs;
     int *odeICs;
-    char *parametersSub;
+    char **parametersSub;
     char independentVariable;
     char derivativeIdentifier;
 } odeSys;

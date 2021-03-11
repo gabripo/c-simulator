@@ -8,7 +8,7 @@ void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, a
     double value;
     char name[10]; // Impossible to pre-allocate
 
-    getParameterSubValues(symbolicSys.parametersSub, name, &value);
+    getParameterSubValues(symbolicSys.parametersSub[0], name, &value);
     printf("%s = %d\n", name, value);
 
     // TODO: Composing finite difference equation

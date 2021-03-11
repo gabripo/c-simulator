@@ -32,4 +32,4 @@ typedef struct
 
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys );
 void getParameterSubValues( char *str, char *name, double *value );
-void setParameterSubValues( odeSys sys, char *sub );
+void setParameterSubValues( odeSys *sys, char *sub );

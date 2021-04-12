@@ -33,3 +33,5 @@ typedef struct
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys );
 void getParameterSubValues( char *str, char *name, double *value );
 void setParameterSubValues( odeSys *sys, char *sub );
+void applySubValues( odeSys *symbolicSys );
+void replaceSubstring( char *fullStr, char *origStr, char *replacementString );

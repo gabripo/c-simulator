@@ -3,16 +3,19 @@
 int main(int argc, char const *argv[])
 {
 
-    // TODO : Same way to create 2D char arrays of parametersSub for odeEqs
     odeSys sys = {
-        .nEqs = 1,
-        .odeEqs = "DxDt - a * x",
+        .nEqs = 0,
+        .odeEqs = calloc(sys.nEqs, sizeof *sys.odeEqs),
         .odeICs = (int*) 0,
         .nSubs = 0,
         .parametersSub = calloc(sys.nSubs, sizeof *sys.parametersSub),
         .independentVariable = 't',
         .derivativeIdentifier = 'D',
     };
+
+    setOde(&sys, "DxDt - a * x");
+    setOde(&sys, "DxDt - b * x");
+    setOde(&sys, "DxDt - ( a + b ) * x");
 
     //sys.parametersSub[0] = calloc(strlen("a = 1") + 1, sizeof **sys.parametersSub);
     //strncpy(sys.parametersSub[0], "a = 1", strlen("a = 1"));

@@ -52,9 +52,12 @@ void applySubValues( odeSys *symbolicSys )
         castedValue = calloc(1, sizeof castedValue);
         sprintf(castedValue, "%d", value);
 
-        int idxOdeEq = 0;
-        for ( idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
-            replaceSubstring(&symbolicSys->odeEqs[idxOdeEq], name, castedValue);
+        if (symbolicSys->nEqs != 0)
+        {
+            int idxOdeEq = 0;
+            for ( idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
+                replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue);
+        }
     };
 };
 
@@ -107,4 +110,13 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
 
         printf("String before sub: %s\n\n", fullStr);
     }
+};
+
+void setOde( odeSys *sys, char *sub )
+{
+    int len = strlen(sub);
+
+    sys->odeEqs[sys->nEqs] = calloc( len + 1, sizeof **sys->odeEqs);
+    strncpy(sys->odeEqs[sys->nEqs], sub, len);
+    sys->odeEqs[sys->nEqs++][len] = 0;
 };

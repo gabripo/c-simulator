@@ -6,7 +6,7 @@
 typedef struct 
 {
     int nEqs;
-    char *odeEqs;
+    char **odeEqs;
     int *odeICs;
     int nSubs;
     char **parametersSub;
@@ -35,3 +35,4 @@ void getParameterSubValues( char *str, char *name, double *value );
 void setParameterSubValues( odeSys *sys, char *sub );
 void applySubValues( odeSys *symbolicSys );
 void replaceSubstring( char *fullStr, char *origStr, char *replacementString );
+void setOde( odeSys *sys, char *sub );

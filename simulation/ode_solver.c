@@ -13,7 +13,7 @@ void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, a
     for ( idxParametersSub = 0; idxParametersSub < symbolicSys.nSubs; idxParametersSub++)
     {
         getParameterSubValues(symbolicSys.parametersSub[idxParametersSub], name, &value);
-        printf("%s = %d\n", name, value);
+        // printf("%s = %d\n", name, value);
         idxParametersSub++;
     }
 
@@ -59,9 +59,7 @@ void applySubValues( odeSys *symbolicSys )
 };
 
 void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
-{
-    printf("String before sub: %s\n", fullStr);
-    
+{   
     const int origStrLength = strlen(origStr);
     const int replacementStringLength = strlen(replacementString);
 
@@ -78,7 +76,10 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
     }
 
     if (nOccurences != 0)
-        {
+    {
+        printf("\nString before sub: %s\n", fullStr);
+        printf("Substitution: %s = %s\n", origStr, replacementString);
+
         char *fullStrNew = NULL;
         fullStrNew = (char*) malloc( idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
 
@@ -103,7 +104,7 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         fullStr = malloc(strlen(fullStrNew)+1);
         memcpy(fullStr, fullStrNew, strlen(fullStrNew)+1);
         free(fullStrNew);
-    }
 
-    printf("String before sub: %s\n", fullStr);
+        printf("String before sub: %s\n\n", fullStr);
+    }
 };

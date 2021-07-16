@@ -1,5 +1,25 @@
 #include "ode_solver.h"
 
+void printOdeSys( odeSys sysToPrint )
+{
+    if (sysToPrint.nEqs != 0)
+    {
+        printf("Printing ODE system:\n");
+        for ( int idxOdeEq = 0; idxOdeEq < sysToPrint.nEqs; idxOdeEq++ )
+            printf("%s\n", sysToPrint.odeEqs[idxOdeEq]);
+        printf("\n");
+    }
+
+    if (sysToPrint.nSubs != 0)
+    {
+        printf("Printing set of substitutions:\n");
+        for ( int idxSubEq = 0; idxSubEq < sysToPrint.nSubs; idxSubEq++ )
+            printf("%s\n", sysToPrint.parametersSub[idxSubEq]);
+        printf("\n");
+    }
+   
+}
+
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys ) 
 {
     printf("Conversion of symbolic ODEs to numerical ones, using a Finite Difference scheme...\n");

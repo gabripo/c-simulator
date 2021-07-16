@@ -22,6 +22,7 @@ int main(int argc, char const *argv[])
     setParameterSubValues(&sys, "a = 1");
     setParameterSubValues(&sys, "b = 2");
     setParameterSubValues(&sys, "c = 3");
+    printOdeSys(sys);
 
     finiteDifferenceMethod fwdEuler = {
         .derivativeSub = "DxDt = ( x(k) - x(k-1) ) / h",

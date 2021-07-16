@@ -55,6 +55,7 @@ void setParameterSubValues( odeSys *sys, char *sub )
     sys->parametersSub[sys->nSubs] = calloc( len + 1, sizeof **sys->parametersSub); // +1 because of 0 value at the end of string
     strncpy(sys->parametersSub[sys->nSubs], sub, len);
     sys->parametersSub[sys->nSubs++][len] = 0;  // Last element of the string
+    printf("Added substitution: %s\n\n", sys->odeEqs[sys->nSubs-1]);
 }
 
 void numToString( char *castedValue, double *source )
@@ -80,6 +81,7 @@ void applySubValues( odeSys *symbolicSys )
             for ( int idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
                 replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue);
         }
+        printf("Substituted: %s\n", symbolicSys->parametersSub[idxParametersSub]);
     };
 };
 
@@ -141,4 +143,5 @@ void setOde( odeSys *sys, char *sub )
     sys->odeEqs[sys->nEqs] = calloc( len + 1, sizeof **sys->odeEqs); // +1 because of 0 value at the end of string
     strncpy(sys->odeEqs[sys->nEqs], sub, len);
     sys->odeEqs[sys->nEqs++][len] = 0;  // Last element of the string
+    printf("Added ODE: %s\n\n", sys->odeEqs[sys->nEqs-1]);
 };

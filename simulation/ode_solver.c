@@ -9,8 +9,7 @@ void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, a
     char *name = NULL;
     name = calloc(1, sizeof name);
 
-    int idxParametersSub = 0;
-    for ( idxParametersSub = 0; idxParametersSub < symbolicSys.nSubs; idxParametersSub++)
+    for ( int idxParametersSub = 0; idxParametersSub < symbolicSys.nSubs; idxParametersSub++)
     {
         getParameterSubValues(symbolicSys.parametersSub[idxParametersSub], name, &value);
         // printf("%s = %lf\n", name, value);
@@ -40,8 +39,7 @@ void setParameterSubValues( odeSys *sys, char *sub )
 
 void applySubValues( odeSys *symbolicSys )
 {
-    int idxParametersSub = 0;
-    for ( idxParametersSub = 0; idxParametersSub < symbolicSys->nSubs; idxParametersSub++)
+    for ( int idxParametersSub = 0; idxParametersSub < symbolicSys->nSubs; idxParametersSub++)
     {
         double value;
         char *name = NULL;

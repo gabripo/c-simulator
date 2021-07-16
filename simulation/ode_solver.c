@@ -77,8 +77,7 @@ void applySubValues( odeSys *symbolicSys )
 
         if (symbolicSys->nEqs != 0)
         {
-            int idxOdeEq = 0;
-            for ( idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
+            for ( int idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
                 replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue);
         }
     };

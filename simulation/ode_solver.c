@@ -31,7 +31,7 @@ void getParameterSubValues( char *str, char *name, double *value )
 
 void setParameterSubValues( odeSys *sys, char *sub )
 {
-    int len = strlen(sub);
+    size_t len = strlen(sub);
 
     sys->parametersSub[sys->nSubs] = calloc( len + 1, sizeof **sys->parametersSub);
     strncpy(sys->parametersSub[sys->nSubs], sub, len);
@@ -114,7 +114,7 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
 
 void setOde( odeSys *sys, char *sub )
 {
-    int len = strlen(sub);
+    size_t len = strlen(sub);
 
     sys->odeEqs[sys->nEqs] = calloc( len + 1, sizeof **sys->odeEqs);
     strncpy(sys->odeEqs[sys->nEqs], sub, len);

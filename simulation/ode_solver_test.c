@@ -6,6 +6,7 @@
 int main(int argc, char const *argv[])
 {
 
+    /* odeEqs and parametersSub cannot be dynamically allocated at this point, since they would be in contiguous blocks of memory */
     odeSys sys = {
         .nEqs = 0,
         .odeEqs = calloc(MAX_NUM_EQS, sizeof *sys.odeEqs),

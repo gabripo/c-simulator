@@ -37,6 +37,11 @@ void setParameterSubValues( odeSys *sys, char *sub )
     sys->parametersSub[sys->nSubs++][len] = 0;  // Last element of the string
 }
 
+void numToString( char *castedValue, double *source )
+{
+    sprintf(castedValue, "%lf", *source);
+}
+
 void applySubValues( odeSys *symbolicSys )
 {
     for ( int idxParametersSub = 0; idxParametersSub < symbolicSys->nSubs; idxParametersSub++)
@@ -48,7 +53,7 @@ void applySubValues( odeSys *symbolicSys )
         getParameterSubValues(symbolicSys->parametersSub[idxParametersSub], name, &value);
         char *castedValue = NULL;
         castedValue = calloc(1, sizeof castedValue);
-        sprintf(castedValue, "%lf", value);
+        numToString(castedValue, &value);
 
         if (symbolicSys->nEqs != 0)
         {

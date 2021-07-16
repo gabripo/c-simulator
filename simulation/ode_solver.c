@@ -33,9 +33,9 @@ void setParameterSubValues( odeSys *sys, char *sub )
 {
     size_t len = strlen(sub);
 
-    sys->parametersSub[sys->nSubs] = calloc( len + 1, sizeof **sys->parametersSub);
+    sys->parametersSub[sys->nSubs] = calloc( len + 1, sizeof **sys->parametersSub); // +1 because of 0 value at the end of string
     strncpy(sys->parametersSub[sys->nSubs], sub, len);
-    sys->parametersSub[sys->nSubs++][len] = 0;
+    sys->parametersSub[sys->nSubs++][len] = 0;  // Last element of the string
 }
 
 void applySubValues( odeSys *symbolicSys )
@@ -116,7 +116,7 @@ void setOde( odeSys *sys, char *sub )
 {
     size_t len = strlen(sub);
 
-    sys->odeEqs[sys->nEqs] = calloc( len + 1, sizeof **sys->odeEqs);
+    sys->odeEqs[sys->nEqs] = calloc( len + 1, sizeof **sys->odeEqs); // +1 because of 0 value at the end of string
     strncpy(sys->odeEqs[sys->nEqs], sub, len);
-    sys->odeEqs[sys->nEqs++][len] = 0;
+    sys->odeEqs[sys->nEqs++][len] = 0;  // Last element of the string
 };

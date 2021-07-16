@@ -66,10 +66,10 @@ void applySubValues( odeSys *symbolicSys )
 
 void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
 {   
-    const int origStrLength = strlen(origStr);
-    const int replacementStringLength = strlen(replacementString);
+    const size_t origStrLength = strlen(origStr);
+    const size_t replacementStringLength = strlen(replacementString);
 
-    int idxCharStrOld, nOccurences = 0;
+    size_t idxCharStrOld, nOccurences = 0;
     for ( idxCharStrOld = 0; fullStr[idxCharStrOld] != '\0'; idxCharStrOld++ )
     {
         if ( strstr( &fullStr[idxCharStrOld], origStr ) == &fullStr[idxCharStrOld] )
@@ -89,7 +89,7 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         char *fullStrNew = NULL;
         fullStrNew = (char*) malloc( idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
 
-        int idxCharStrNew = 0;
+        size_t idxCharStrNew = 0;
         while ( *fullStr )
         {
             if ( strstr( fullStr, origStr ) == fullStr )

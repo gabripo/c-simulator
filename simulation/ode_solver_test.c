@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
 
     setOde(&sys, "DxDt - a * x");
     setOde(&sys, "DxDt - b * x");
-    setOde(&sys, "DxDt - ( a + b ) * x");
+    setOde(&sys, "DxDt - ( a + b + c) * x");
 
     //sys.parametersSub[0] = calloc(strlen("a = 1") + 1, sizeof **sys.parametersSub);
     //strncpy(sys.parametersSub[0], "a = 1", strlen("a = 1"));

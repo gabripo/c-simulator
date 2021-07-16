@@ -72,14 +72,51 @@ void applySubValues( odeSys *symbolicSys )
         {
             printf("Substitution of %s ...\n", symbolicSys->parametersSub[idxParametersSub]);
             for ( int idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
-                replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue);
+            {
+                char *eqWithSub = NULL;
+                eqWithSub = malloc(sizeof(symbolicSys->odeEqs[idxOdeEq]));
+                size_t charDiff = 0;
+
+                replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue, eqWithSub, charDiff);
+                if(strlen(eqWithSub) != 0)
+                {
+                    // printf("Substituted eq: %s\n", eqWithSub);
+
+                    char **odeEqsNew = NULL;
+                    odeEqsNew = malloc(sizeof(symbolicSys->odeEqs) + 1000);     // TODO: Smart addition of charDiff
+                    for (int idxOdeEqLocal = 0; idxOdeEqLocal < symbolicSys->nEqs; idxOdeEqLocal++)
+                    {
+                        if(idxOdeEqLocal != idxOdeEq)
+                        {
+                            odeEqsNew[idxOdeEqLocal] = calloc(strlen(symbolicSys->odeEqs[idxOdeEqLocal])+1, sizeof odeEqsNew[idxOdeEqLocal]);
+                            strcpy(odeEqsNew[idxOdeEqLocal], symbolicSys->odeEqs[idxOdeEqLocal]);
+                            // printf("Eq %d copied\n", idxOdeEqLocal);
+                        }
+                        else
+                        {
+                            // printf("Copying eqWithSub...\n");
+                            odeEqsNew[idxOdeEqLocal] = calloc(strlen(eqWithSub)+1, sizeof odeEqsNew[idxOdeEqLocal]);
+                            strcpy(odeEqsNew[idxOdeEqLocal], eqWithSub);
+                            // printf("Eq %d (eqWithSub) copied\n", idxOdeEqLocal);
+                        }
+                    }
+                    for (int i = 0; i < symbolicSys->nEqs; i++)
+                    {
+                        symbolicSys->odeEqs[i] = malloc(strlen(odeEqsNew[i])+1);
+                        memcpy(symbolicSys->odeEqs[i], odeEqsNew[i], strlen(odeEqsNew[i])+1);
+                    }
+                    free(odeEqsNew);
+                }
+                // printOdeSys(*symbolicSys);
+            }
             printf("Substituted: %s\n\n", symbolicSys->parametersSub[idxParametersSub]);
         }
     };
     printf("End of substitutions...\n\n");
+    // printOdeSys(*symbolicSys);
 };
 
-void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
+void replaceSubstring( char *fullStr, char *origStr, char *replacementString, char *fullStrNew, size_t charDiff )
 {   
     const size_t origStrLength = strlen(origStr);
     const size_t replacementStringLength = strlen(replacementString);
@@ -101,8 +138,9 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         printf("Equation before substitution: %s\n", fullStr);
         // printf("Substitution: %s = %s\n", origStr, replacementString);
 
-        char *fullStrNew = NULL;
-        fullStrNew = (char*) malloc( idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
+        // char *fullStrNew = NULL;
+        // fullStrNew = (char*) malloc( idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
+        fullStrNew = realloc(fullStrNew, idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
 
         size_t idxCharStrNew = 0;
         while ( *fullStr )
@@ -122,11 +160,13 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         }
         fullStrNew[idxCharStrNew] = '\0';
 
-        fullStr = malloc(strlen(fullStrNew)+1);
-        memcpy(fullStr, fullStrNew, strlen(fullStrNew)+1);
-        free(fullStrNew);
+        // fullStr = malloc(strlen(fullStrNew)+1);
+        // memcpy(fullStr, fullStrNew, strlen(fullStrNew)+1);
+        // free(fullStrNew);
 
-        printf("Equation after substitution: %s\n\n", fullStr);
+        charDiff = sizeof(fullStr) - sizeof(fullStrNew);
+
+        printf("Equation after substitution: %s\n\n", fullStrNew);
     }
 };
 

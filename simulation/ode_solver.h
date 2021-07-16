@@ -36,5 +36,5 @@ void getParameterSubValues( char *str, char *name, double *value );
 void setParameterSubValues( odeSys *sys, char *sub );
 void numToString( char *castedValue, double *source );
 void applySubValues( odeSys *symbolicSys );
-void replaceSubstring( char *fullStr, char *origStr, char *replacementString );
+void replaceSubstring( char *fullStr, char *origStr, char *replacementString, char *fullStrNew, size_t charDiff );
 void setOde( odeSys *sys, char *sub );

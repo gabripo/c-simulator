@@ -111,7 +111,7 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         memcpy(fullStr, fullStrNew, strlen(fullStrNew)+1);
         free(fullStrNew);
 
-        printf("String before sub: %s\n\n", fullStr);
+        printf("String after sub: %s\n\n", fullStr);
     }
 };
 

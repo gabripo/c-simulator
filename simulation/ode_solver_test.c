@@ -43,5 +43,6 @@ int main(int argc, char const *argv[])
     };
     
     odeNumericalConverter(sys, fwdEuler, &toSolveEqs);
+    printOdeSys(sys);
     return 0;
 }

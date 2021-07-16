@@ -4,20 +4,25 @@ void printOdeSys( odeSys sysToPrint )
 {
     if (sysToPrint.nEqs != 0)
     {
+        printf("--------------------\n");
         printf("Printing ODE system:\n");
         for ( int idxOdeEq = 0; idxOdeEq < sysToPrint.nEqs; idxOdeEq++ )
             printf("%s\n", sysToPrint.odeEqs[idxOdeEq]);
-        printf("\n");
+        printf("--------------------\n");
     }
+    else
+        printf("No equations to print!\n");
 
     if (sysToPrint.nSubs != 0)
     {
+        printf("--------------------\n");
         printf("Printing set of substitutions:\n");
         for ( int idxSubEq = 0; idxSubEq < sysToPrint.nSubs; idxSubEq++ )
             printf("%s\n", sysToPrint.parametersSub[idxSubEq]);
-        printf("\n");
+        printf("--------------------\n");
     }
-   
+   else
+        printf("No substitutions to print!\n");
 }
 
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys ) 
@@ -65,11 +70,13 @@ void applySubValues( odeSys *symbolicSys )
 
         if (symbolicSys->nEqs != 0)
         {
+            printf("Substitution of %s ...\n", symbolicSys->parametersSub[idxParametersSub]);
             for ( int idxOdeEq = 0; idxOdeEq < symbolicSys->nEqs; idxOdeEq++ )
                 replaceSubstring(symbolicSys->odeEqs[idxOdeEq], name, castedValue);
+            printf("Substituted: %s\n\n", symbolicSys->parametersSub[idxParametersSub]);
         }
-        printf("Substituted: %s\n", symbolicSys->parametersSub[idxParametersSub]);
     };
+    printf("End of substitutions...\n\n");
 };
 
 void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
@@ -91,8 +98,8 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
 
     if (nOccurences != 0)
     {
-        printf("\nString before sub: %s\n", fullStr);
-        printf("Substitution: %s = %s\n", origStr, replacementString);
+        printf("Equation before substitution: %s\n", fullStr);
+        // printf("Substitution: %s = %s\n", origStr, replacementString);
 
         char *fullStrNew = NULL;
         fullStrNew = (char*) malloc( idxCharStrOld + nOccurences * (replacementStringLength - origStrLength) + 1 );
@@ -119,7 +126,7 @@ void replaceSubstring( char *fullStr, char *origStr, char *replacementString )
         memcpy(fullStr, fullStrNew, strlen(fullStrNew)+1);
         free(fullStrNew);
 
-        printf("String after sub: %s\n\n", fullStr);
+        printf("Equation after substitution: %s\n\n", fullStr);
     }
 };
 

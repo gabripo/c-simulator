@@ -23,19 +23,6 @@ void printOdeSys( odeSys sysToPrint )
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys ) 
 {
     printf("Conversion of symbolic ODEs to numerical ones, using a Finite Difference scheme...\n");
-
-    /* Substitution of parameters into ODEs */
-    double value;
-    char *name = NULL;
-    name = calloc(1, sizeof name);
-
-    for ( int idxParametersSub = 0; idxParametersSub < symbolicSys.nSubs; idxParametersSub++)
-    {
-        getParameterSubValues(symbolicSys.parametersSub[idxParametersSub], name, &value);
-        // printf("%s = %lf\n", name, value);
-        idxParametersSub++;
-    }
-
     applySubValues(&symbolicSys);
 
     // TODO: Composing finite difference equation

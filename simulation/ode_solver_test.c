@@ -1,14 +1,17 @@
 #include "ode_solver.c"
 
+#define MAX_NUM_EQS 100
+#define MAX_NUM_SUBS 100
+
 int main(int argc, char const *argv[])
 {
 
     odeSys sys = {
         .nEqs = 0,
-        .odeEqs = calloc(sys.nEqs, sizeof *sys.odeEqs),
+        .odeEqs = calloc(MAX_NUM_EQS, sizeof *sys.odeEqs),
         .odeICs = (int*) 0,
         .nSubs = 0,
-        .parametersSub = calloc(sys.nSubs, sizeof *sys.parametersSub),
+        .parametersSub = calloc(MAX_NUM_SUBS, sizeof *sys.parametersSub),
         .independentVariable = 't',
         .derivativeIdentifier = 'D',
     };

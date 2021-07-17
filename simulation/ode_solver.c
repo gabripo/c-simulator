@@ -27,12 +27,14 @@ void printOdeSys( odeSys sysToPrint )
 
 void odeNumericalConverter( odeSys symbolicSys, finiteDifferenceMethod method, algSys *numericSys ) 
 {
+    printf("----------------------------------------------------------------------------------\n");
     printf("Conversion of symbolic ODEs to numerical ones, using a Finite Difference scheme...\n");
     applySubValues(&symbolicSys);
 
     // TODO: Composing finite difference equation
     // TODO: Substituting finite difference equation
     // TODO: Creating algebraic equations to solve
+    printf("----------------------------------------------------------------------------------\n");
 };
 
 void getParameterSubValues( char *str, char *name, double *value )

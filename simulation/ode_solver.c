@@ -107,7 +107,7 @@ void applySubValues( odeSys *symbolicSys )
                         symbolicSys->odeEqs[i] = malloc(strlen(odeEqsNew[i])+1);
                         memcpy(symbolicSys->odeEqs[i], odeEqsNew[i], strlen(odeEqsNew[i])+1);
                     }
-                    free(odeEqsNew);
+                    // free(odeEqsNew);
                 }
                 // printOdeSys(*symbolicSys);
             }

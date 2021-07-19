@@ -85,7 +85,7 @@ void applySubValues( odeSys *symbolicSys )
                     // printf("Substituted eq: %s\n", eqWithSub);
 
                     char **odeEqsNew = NULL;
-                    odeEqsNew = malloc(sizeof(symbolicSys->odeEqs) + 1000);     // TODO: Smart addition of charDiff
+                    odeEqsNew = malloc(sizeof(symbolicSys->odeEqs) + sizeof(char) * (size_t) charDiff);
                     for (int idxOdeEqLocal = 0; idxOdeEqLocal < symbolicSys->nEqs; idxOdeEqLocal++)
                     {
                         if(idxOdeEqLocal != idxOdeEq)
